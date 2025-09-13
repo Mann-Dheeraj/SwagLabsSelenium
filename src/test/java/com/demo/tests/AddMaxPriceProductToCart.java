@@ -1,0 +1,38 @@
+package com.demo.tests;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.testng.Assert;
+
+import com.demo.base.Base;
+import com.demo.pages.HomePage;
+import com.demo.pages.LoginPage;
+
+public class AddMaxPriceProductToCart extends Base {
+
+	public static void main(String[] args)
+
+	{
+
+		Base.initializeDriver("firefox");
+		LoginPage loginPage = new LoginPage(Base.driver);
+		HomePage homePage = new HomePage(Base.driver);
+
+		loginPage.navigateToLoginPage();
+		loginPage.loginWith("standard_user", "secret_sauce");
+
+		List<Double> allPrices = homePage.getAllItemPrices();
+		double maxPrice = Collections.max(allPrices);
+		homePage.cartButtonForIteWithPrice(maxPrice).click();
+		String textOnCartAfterButtonAfterAddition = homePage.cartButtonForIteWithPrice(maxPrice).getText();
+		Assert.assertEquals(textOnCartAfterButtonAfterAddition, "Remove", "Wrong Text");
+
+		double minPrice = Collections.min(allPrices);
+		homePage.cartButtonForIteWithPrice(minPrice).click();
+		textOnCartAfterButtonAfterAddition = homePage.cartButtonForIteWithPrice(minPrice).getText();
+		Assert.assertEquals(textOnCartAfterButtonAfterAddition, "Remove", "Wrong Text");
+
+	}
+
+}

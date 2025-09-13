@@ -1,0 +1,35 @@
+# Eclipse specific files
+.settings/
+.project
+.classpath
+
+# Eclipse launch configs
+*.launch
+
+# IntelliJ IDEA files (if you ever open in IDEA)
+.idea/
+*.iml
+
+# Maven target directory
+/target/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Java compiled files
+*.class
+
+# Test reports
+/test-output/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# VS Code (if opened there)
+.vscode/
