@@ -2,20 +2,16 @@ package com.demo.tests;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.testng.Assert;
-
+import org.testng.annotations.Test;
 import com.demo.base.Base;
 import com.demo.pages.HomePage;
 import com.demo.pages.LoginPage;
 
 public class AddMaxPriceProductToCart extends Base {
 
-	public static void main(String[] args)
-
-	{
-
-		Base.initializeDriver("firefox");
+	@Test
+	public void verifyAddToCartFunctionality() {
 		LoginPage loginPage = new LoginPage(Base.driver);
 		HomePage homePage = new HomePage(Base.driver);
 
@@ -32,7 +28,6 @@ public class AddMaxPriceProductToCart extends Base {
 		homePage.cartButtonForIteWithPrice(minPrice).click();
 		textOnCartAfterButtonAfterAddition = homePage.cartButtonForIteWithPrice(minPrice).getText();
 		Assert.assertEquals(textOnCartAfterButtonAfterAddition, "Remove", "Wrong Text");
-
 	}
 
 }

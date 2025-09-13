@@ -9,6 +9,7 @@
 # IntelliJ IDEA files (if you ever open in IDEA)
 .idea/
 *.iml
+*.ini
 
 # Maven target directory
 /target/

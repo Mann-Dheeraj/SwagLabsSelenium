@@ -1,49 +1,50 @@
 package com.demo.base;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.chromium.ChromiumDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
-
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base {
 
-	public static WebDriver driver = null;
+    protected static WebDriver driver;
 
-	public static void initializeDriver(String browser) {
-		switch (browser) {
+    // existing method — you can still call it manually
+    public static void initializeDriver(String browser) {
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid browser: " + browser);
+        }
+        driver.manage().window().maximize();
+    }
 
-		case "firefox":
-			WebDriverManager.firefoxdriver().setup();
-			Base.driver= new FirefoxDriver();
-			break;
-			
-		case "chrome":
-			WebDriverManager.chromedriver().setup();
-			Base.driver= new ChromeDriver();
-			break;
-			
-		default:
-			System.out.println("Invalid browser choice");
-			break;
+    // TestNG hooks
+    @BeforeMethod
+    public void setUp() {
+        // Default browser → firefox (you can change later to chrome/edge/config file)
+        initializeDriver("firefox");
+    }
 
-		}
-		Base.driver.manage().window().maximize();
-		
-	}
-	
-	public static void quitDriver() {
+    @AfterMethod
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
             driver = null;
         }
-
-}
+    }
 }
