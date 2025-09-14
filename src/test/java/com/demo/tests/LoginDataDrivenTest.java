@@ -23,6 +23,7 @@ public class LoginDataDrivenTest extends Base {
     @Test(dataProvider = "loginDetails")
     public void verifyLoginForDifferentUsers(String email, String password, boolean canLogin) {
         // System.out.println(email+password);
+        initializeDriver();
         LoginPage loginPage = new LoginPage(driver);
 
         loginPage.navigateToLoginPage();

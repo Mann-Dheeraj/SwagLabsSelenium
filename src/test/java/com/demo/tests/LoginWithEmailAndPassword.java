@@ -8,7 +8,8 @@ public class LoginWithEmailAndPassword extends Base {
 
 	@Test
 	public void verifyValidLogin() {
-		LoginPage loginPage = new LoginPage(Base.driver);
+		initializeDriver();
+		LoginPage loginPage = new LoginPage(driver);
 
 		loginPage.navigateToLoginPage();
 		loginPage.loginWith("standard_user", "secret_sauce");

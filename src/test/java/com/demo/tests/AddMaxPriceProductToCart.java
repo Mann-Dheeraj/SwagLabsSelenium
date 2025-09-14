@@ -12,8 +12,9 @@ public class AddMaxPriceProductToCart extends Base {
 
 	@Test
 	public void verifyAddToCartFunctionality() {
-		LoginPage loginPage = new LoginPage(Base.driver);
-		HomePage homePage = new HomePage(Base.driver);
+		initializeDriver();
+		LoginPage loginPage = new LoginPage(driver);
+		HomePage homePage = new HomePage(driver);
 
 		loginPage.navigateToLoginPage();
 		String loginPageTitle = "Swag Labs";
