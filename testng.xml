@@ -3,7 +3,8 @@
   <test name="Default Tests">
     <classes>
       <class name="com.demo.tests.LoginWithEmailAndPassword"/>
-      <class name="com.demo.tests.AddMaxPriceProductToCart"/>
+      <class name="com.demo.tests.AddMaxPriceProductToCart"/> 
+      <class name="com.demo.tests.LoginDataDrivenTest"/>
     </classes>
   </test>
 </suite>

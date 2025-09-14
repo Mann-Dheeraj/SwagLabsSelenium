@@ -16,7 +16,13 @@ public class AddMaxPriceProductToCart extends Base {
 		HomePage homePage = new HomePage(Base.driver);
 
 		loginPage.navigateToLoginPage();
+		String loginPageTitle = "Swag Labs";
+		Assert.assertEquals(loginPageTitle, driver.getTitle(), "Title do not match");
+
+		String homePageURL = "https://www.saucedemo.com/inventory.html";		
 		loginPage.loginWith("standard_user", "secret_sauce");
+		boolean isURLCorrect = (driver.getCurrentUrl().equals(homePageURL));
+		Assert.assertTrue(isURLCorrect, "Incorrect URL");
 
 		List<Double> allPrices = homePage.getAllItemPrices();
 		double maxPrice = Collections.max(allPrices);
